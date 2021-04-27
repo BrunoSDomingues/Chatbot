@@ -1,4 +1,5 @@
 # Chatbot
+<<<<<<< HEAD
 
 Um chatbot desenvolvido para ver o clima, controlar aparelhos como luz/ar-condicionado e checar sua conta bancária.
 
@@ -6,3 +7,5 @@ Um chatbot desenvolvido para ver o clima, controlar aparelhos como luz/ar-condic
 
 1) Rodar o arquivo `train_model.py` para gerar o modelo
 2) Rodar o arquivo `foxbot.py` para conversar com o foxbot
+=======
+>>>>>>> main
