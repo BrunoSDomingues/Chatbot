@@ -8,7 +8,7 @@ from sklearn.metrics import accuracy_score
 
 # Processing and cleaning data
 data = pd.read_csv("sentencas.csv").drop(columns=["Timestamp"])
-data["Sentença"] = data["Sentença"].apply(clean_text)
+data["Sentença"] = data["Sentença"].apply(lambda x: clean_text(str(x)))
 
 # Split test/train
 X_train, X_test, y_train, y_test = train_test_split(
@@ -27,8 +27,8 @@ tr_test = vectorizer.transform(X_test)
 print(f"Modelo generico: {cross_val_score(model, tr_test, y_test, cv=4)}")
 
 # Save model and vectorizer
-with open("modelo.bin", "w+") as m:
+with open("modelo.bin", "wb+") as m:
     dump(model, m)
 
-with open("vectorizer.bin", "w+") as v:
+with open("vectorizer.bin", "wb+") as v:
     dump(vectorizer, v)
