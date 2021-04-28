@@ -22,8 +22,10 @@ def greetUser(p=possibilities):
 def processInput(u_input, m=model, v=vectorizer):
     new_t = v.transform([u_input])
     pred = model.predict(new_t)
-    if np.amax(model.predict_proba(new_t)[0]) < 0.6:
+
+    if np.amax(model.predict_proba(new_t)[0]) < 0.5:
         pred = "Desculpe, nao entendi."
+
     return pred, new_t
 
 
@@ -44,7 +46,10 @@ def wrongPred(u_input_vectorized, p=possibilities, m=model):
 
             else:
                 print(p[expected - 1] + "\n")
-                model.partial_fit(u_input_vectorized, [p[expected - 1]], classes=p)
+                model.partial_fit(u_input_vectorized, [p[expected - 1]])
+                with open("modelo.bin", "wb+") as m:
+                    dump(model, m)
+
                 print("Obrigado por ajudar a melhorar o FoxBot.")
                 break
 
