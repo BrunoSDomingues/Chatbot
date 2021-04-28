@@ -23,8 +23,12 @@ model = MultinomialNB()
 model.fit(ft_train, y_train)
 tr_test = vectorizer.transform(X_test)
 
+
+results = cross_val_score(model, tr_test, y_test, cv=4)
 # Accuracy
-print(f"Modelo generico: {cross_val_score(model, tr_test, y_test, cv=4)}")
+print(f"Modelo generico:")
+for i in range(len(results)):
+    print(f"Iteracao {i}: {round(results[i]*100, 2)}%")
 
 # Save model and vectorizer
 with open("modelo.bin", "wb+") as m:
